@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StartScreenComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  newGame() {
+    // Start Game
+    this.router.navigateByUrl('/game');
   }
 
 }
