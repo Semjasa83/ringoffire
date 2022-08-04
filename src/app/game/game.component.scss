@@ -18,3 +18,17 @@
 
     }
 }
+
+.top-card {
+    cursor: pointer;
+    transition: all 150ms ease-in-out;
+    &:hover {
+        transform: scale(1.1);
+        transform: translateY(-10px);
+    }
+}
+
+.pick-card {
+    transition: all 120ms ease-in-out;
+    transform: scale(1.5) !important;
+}
