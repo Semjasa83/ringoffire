@@ -1,0 +1,81 @@
+.playground {
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  background-image: url("/assets/img/backgrounds/darkbgr.jpg");
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-stack {
+  position: relative;
+}
+.card-stack img {
+  position: absolute;
+  width: 120px;
+}
+
+.top-card {
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+}
+.top-card:hover {
+  transform: scale(1.1);
+  transform: translateY(-10px);
+}
+
+.played-card {
+  right: 25px;
+  transform: scale(1.2) translateX(200px) translateY(-200px) rotate(15deg);
+}
+
+.pick-card {
+  transition: all 120ms ease-in-out;
+  transform: scale(1.5);
+  -webkit-animation: pick-card-animation 1.1s ease-in-out;
+          animation: pick-card-animation 1.1s ease-in-out;
+  transform: scale(1.2) translateX(200px) translateY(-200px) rotate(15deg);
+}
+
+@-webkit-keyframes pick-card-animation {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.5);
+  }
+  60% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1.2) translateX(200px) translateY(-200px) rotate(15deg);
+  }
+}
+
+@keyframes pick-card-animation {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.5);
+  }
+  60% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1.2) translateX(200px) translateY(-200px) rotate(15deg);
+  }
+}
+.avatar-position {
+  position: absolute;
+  right: 0;
+}
+
+.btn-add {
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+}/*# sourceMappingURL=game.component.css.map */

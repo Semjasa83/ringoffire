@@ -1,0 +1,21 @@
+.player {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #999999;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+.player span {
+  font-size: 2rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.player img {
+  width: 100px;
+  height: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 100%;
+}/*# sourceMappingURL=player.component.css.map */
