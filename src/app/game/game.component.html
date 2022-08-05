@@ -1,7 +1,7 @@
 <app-player
   *ngFor="let player of game.players; let i = index"
-  [ngStyle]="{ 'top.px': 100 + (i * 120) }"
-  [name] = "player"
+  [ngStyle]="{ 'top.px': 100 + i * 120 }"
+  [name]="player"
   class="avatar-position"
 ></app-player>
 
@@ -34,4 +34,7 @@
       src="/assets/img/cards/{{ currentCard }}.png"
     />
   </div>
+  <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
+    <mat-icon>delete</mat-icon>
+  </button>
 </div>
