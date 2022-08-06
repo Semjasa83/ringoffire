@@ -1,20 +1,26 @@
 .player {
-    width: 300px;
+    width: 250px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #999999; //d35400
+    background-color: rgba($color: #777777, $alpha: 0.8); //d35400
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
     span {
-        font-size: 2rem;
+        font-size: 1.25rem;
+        color: #FFFFFF;
         margin-left: 1rem;
         margin-right: 1rem;
+        width: 100%;
     }
     img{
-        width: 100px;
-        height: 100px;
+        width: 70px;
+        height: 70px;
         object-fit: cover;
         border-radius: 100%;
     }
+}
+
+.player-active {
+    background-color: rgba($color: #C2175B, $alpha: 0.8);
 }

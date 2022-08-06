@@ -1,5 +1,5 @@
 export class Game {
-    public players: string[] = ['Hans', 'Anton', 'Depp', 'Gollum']; //permit only string in the Array //public for all File access
+    public players: string[] = []; //permit only string in the Array //public for all File access
     public stack: string[] = [];
     public playedCards: string[] = [];
     public currentPlayer: number = 0;
