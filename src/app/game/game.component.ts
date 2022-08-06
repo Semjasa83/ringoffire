@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { Game } from 'src/models/game';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
@@ -32,7 +32,7 @@ export class GameComponent implements OnInit {
       setTimeout(() => {
         this.game.playedCards.push(this.currentCard);
         this.pickCardAnimation = false;
-        console.log('New Card: ' + this.currentCard); //__CONSOLE
+        //console.log('New Card: ' + this.currentCard); //__CONSOLE
       }, 1300);
     }
   }
