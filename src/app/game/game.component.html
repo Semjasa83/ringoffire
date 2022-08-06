@@ -12,13 +12,13 @@
     <img
       [ngStyle]="{ 'right.px': i * 5 }"
       *ngFor="let cards of [0, 1, 2, 3]; let i = index"
-      src="/assets/img/cards/red_back.png"
+      src="/assets/img/cards/custom_back.png"
     />
     <img
       (click)="takeCard()"
       class="top-card"
       style="right: 25px"
-      src="/assets/img/cards/red_back.png"
+      src="/assets/img/cards/custom_back.png"
     />
     <!-- Stack for played Cards -->
     <img
