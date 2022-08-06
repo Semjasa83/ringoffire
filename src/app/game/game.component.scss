@@ -62,3 +62,11 @@
     right: 2rem;
     bottom: 2rem;
 }
+
+.pin-bottom {
+    position: absolute;
+    bottom: 2rem;
+    left: 8rem;
+    right: 8rem;
+    box-shadow: 7px 7px 10px  rgba($color: #C2175B, $alpha: 0.4);
+}
