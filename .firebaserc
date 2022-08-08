@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ringoffire-firebase": {
+      "hosting": {
+        "RingofFire": [
+          "ringoffire-firebase"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ringoffire-firebase"
+  }
+}
