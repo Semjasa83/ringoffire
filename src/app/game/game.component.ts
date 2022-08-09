@@ -5,6 +5,7 @@ import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { doc, setDoc } from "firebase/firestore";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -17,24 +18,27 @@ export class GameComponent implements OnInit {
   game: Game;
   games: Observable<Game[]>;
 
-  constructor(private firestore: Firestore, public dialog: MatDialog) {}
+  constructor(private route: ActivatedRoute, private firestore: Firestore, public dialog: MatDialog) {}
 
   coll = collection(this.firestore, 'games');
   games$ = collectionData(this.coll);
 
   ngOnInit(): void {
     this.newGame();
-    this
+    this.route.params.subscribe((params) => {
+      console.log(params);
+
+      this
       .games$
       .subscribe((game) => {
         console.log('gameupdate', game);
     });
-    ;
+    });
   }
 
   newGame() {
     this.game = new Game();
-    setDoc(doc(this.coll), this.game.toJSON());
+    //setDoc(doc(this.coll), this.game.toJSON());
   }
 
   takeCard() {
