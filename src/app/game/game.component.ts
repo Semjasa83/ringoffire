@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Game } from 'src/models/game';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
-import { Firestore, collectionData, collection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { doc, setDoc } from "firebase/firestore";
+import { addDoc, doc, Firestore } from '@angular/fire/firestore';
+import { collection, setDoc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-game',
@@ -15,26 +14,31 @@ export class GameComponent implements OnInit {
   pickCardAnimation = false;
   currentCard: string = '';
   game: Game;
-  games: Observable<Game[]>;
+  //games: Observable<Game[]>;
 
-  constructor(private firestore: Firestore, public dialog: MatDialog) {}
+  constructor(private firestore: Firestore, public dialog: MatDialog) {
+    //coll = collection(this.firestore, 'games');
+  }
 
-  coll = collection(this.firestore, 'games');
-  games$ = collectionData(this.coll);
+
+  //games$ = collectionData(this.coll);
 
   ngOnInit(): void {
     this.newGame();
-    this
+    /*this
       .games$
       .subscribe((game) => {
         console.log('gameupdate', game);
-    });
+    });*/
     ;
   }
 
-  newGame() {
-    this.game = new Game();
-    setDoc(doc(this.coll), this.game.toJSON());
+  async newGame() {
+    let game = new Game();
+    const coll = collection(this.firestore, 'games');
+    console.log("Document written with ID: ", coll);
+    let gameInfo = await addDoc(coll, { game: game.toJSON() });
+    console.log(gameInfo);
   }
 
   takeCard() {
