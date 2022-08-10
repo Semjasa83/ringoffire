@@ -38,7 +38,7 @@ export class GameComponent implements OnInit {
 
   newGame() {
     this.game = new Game();
-    //setDoc(doc(this.coll), this.game.toJSON());
+    setDoc(doc(this.coll), this.game.toJSON());
   }
 
   takeCard() {

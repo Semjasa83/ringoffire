@@ -7,15 +7,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./start-screen.component.scss']
 })
 export class StartScreenComponent implements OnInit {
-
-  constructor(private router: Router) { }
+// Collection speichern
+  constructor(private router: Router) {
+    // Collection holen
+  }
 
   ngOnInit(): void {
   }
 
   newGame() {
     // Start Game
-    this.router.navigateByUrl('/game');
+    // document zu collection hinzufügen
+    let id = 'ID von Firebase';
+    this.router.navigateByUrl('/game/' + id);
   }
 
 }
