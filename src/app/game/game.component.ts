@@ -30,10 +30,10 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {
     this.newGame();
     this.route.params.subscribe((params) => {
-      console.log('current ID', params.id);
+      //console.log('current ID', params.id); // _____CONSOLE
 
       this.games$.subscribe((game:any) => {
-        console.log('gameupdate', game);
+        //console.log('gameupdate', game);   //______Console
         /*this.game.currentPlayer = game.currentPlayer;
         this.game.playedCards = game.playedCards;
         this.game.players = game.players;
@@ -50,7 +50,7 @@ export class GameComponent implements OnInit {
   takeCard() {
     if (!this.pickCardAnimation) {
       this.currentCard = this.game.stack.pop();
-      console.log(this.currentCard);
+      //console.log(this.currentCard);    //_____CONSOLE
       this.pickCardAnimation = true;
       //console.log('Game is', this.game);            //__CONSOLE
       this.game.currentPlayer++;
@@ -59,7 +59,7 @@ export class GameComponent implements OnInit {
       setTimeout(() => {
         this.game.playedCards.push(this.currentCard);
         this.pickCardAnimation = false;
-        //console.log('New Card: ' + this.currentCard); //__CONSOLE
+        console.log('New Card: ' + this.currentCard); //__CONSOLE
       }, 1300);
     }
   }

@@ -40,8 +40,8 @@ private gameComponent: CollectionReference<DocumentData>;
     console.log(game);
 
     let elem = await addDoc(this.gameComponent, {game})
-    console.log('va', elem);
-    console.log('va ID', elem.id);
+    //console.log('va', elem);  //______CONSOLE
+    //console.log('va ID', elem.id);    //______CONSOLE
 
     // document zu collection hinzufügen
     //id = 'ID von Firebase';
