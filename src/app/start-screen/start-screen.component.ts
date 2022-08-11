@@ -34,7 +34,6 @@ private gameComponent: CollectionReference<DocumentData>;
   }
 
   async newGame() {
-    // Start Game
     let game = new Game();
 
     const gameInfo = await addDoc(collection(this.firestore, "games"), game.toJSON()); //Users
