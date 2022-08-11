@@ -1,3 +1,4 @@
+import { Game } from './../../models/game';
 import { GameComponent } from './../game/game.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -21,12 +22,12 @@ import { elementAt, Observable } from 'rxjs';
   styleUrls: ['./start-screen.component.scss']
 })
 export class StartScreenComponent implements OnInit {
-
+game = new Game;
 // Collection speichern
 private gameComponent: CollectionReference<DocumentData>;
-  constructor(private router: Router, firestore: Firestore) {
+  constructor(private router: Router, private readonly firestore: Firestore) {
     // pull Collection
-    this.gameComponent = collection(firestore, 'games');
+    this.gameComponent = collection(this.firestore, 'games');
     //console.log('comp:', this.gameComponent); ____CONSOLE
   }
 
@@ -35,7 +36,10 @@ private gameComponent: CollectionReference<DocumentData>;
 
   async newGame() {
     // Start Game
-    let elem = await addDoc(this.gameComponent, {'test':'test'})
+    let game = this.game.toJSON();
+    console.log(game);
+
+    let elem = await addDoc(this.gameComponent, {game})
     console.log('va', elem);
     console.log('va ID', elem.id);
 
