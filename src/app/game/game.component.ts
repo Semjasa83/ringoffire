@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Game } from 'src/models/game';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
-import { Firestore, collectionData, collection } from '@angular/fire/firestore';
+import { Firestore, collectionData, collection, onSnapshot } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { doc, setDoc } from 'firebase/firestore';
 import { ActivatedRoute } from '@angular/router';
@@ -18,26 +18,26 @@ export class GameComponent implements OnInit {
   game: Game;
   games: Observable<Game[]>;
 
+  gameId: string = '';
+
   constructor(
     private route: ActivatedRoute,
     private firestore: Firestore,
     public dialog: MatDialog
   ) {}
 
-  coll = collection(this.firestore, 'games'); //complete collection in firebase
-  games$ = collectionData(this.coll); //get all data from collection
+  // coll = collection(this.firestore, 'game'); //complete collection in firebase
+  // games$ = collectionData(this.coll); //get all data from collection
 
   ngOnInit(): void {
     this.newGame();
     this.route.params.subscribe((params) => {
-      //console.log('current ID', params.id); // _____CONSOLE
+      console.log('current ID', params.id); //_______CONSOLE
 
-      this.games$.subscribe((game:any) => {
-        //console.log('gameupdate', game);   //______Console
-        /*this.game.currentPlayer = game.currentPlayer;
-        this.game.playedCards = game.playedCards;
-        this.game.players = game.players;
-        this.game.stack = game.stack;*/
+      this.gameId = params.id;    // hinzugefügt
+      onSnapshot(doc(this.firestore, "game", params.id), (doc) => {
+        const loadGame:any =doc.data();
+        this.updateGameData(loadGame);
       });
     });
   }
@@ -48,18 +48,19 @@ export class GameComponent implements OnInit {
   }
 
   takeCard() {
+    console.log('this game: ', this.game);  // _________CONSOLE
     if (!this.pickCardAnimation) {
       this.currentCard = this.game.stack.pop();
-      //console.log(this.currentCard);    //_____CONSOLE
+      this.saveGame();
+      console.log('this current card: ', this.currentCard);  //________CONSOLE
       this.pickCardAnimation = true;
-      //console.log('Game is', this.game);            //__CONSOLE
       this.game.currentPlayer++;
       this.game.currentPlayer =
         this.game.currentPlayer % this.game.players.length;
       setTimeout(() => {
         this.game.playedCards.push(this.currentCard);
         this.pickCardAnimation = false;
-        console.log('New Card: ' + this.currentCard); //__CONSOLE
+        this.saveGame();
       }, 1300);
     }
   }
@@ -70,7 +71,24 @@ export class GameComponent implements OnInit {
     dialogRef.afterClosed().subscribe((name: string) => {
       if (name && name.length > 0) {
         this.game.players.push(name);
+        this.saveGame();
       }
     });
+  }
+
+  saveGame(){
+    const coll:any = collection(this.firestore, 'games');
+    setDoc(doc(coll, this.gameId), this.game.toJSON());
+    console.log('gameID: ', this.gameId); //_________CONSOLE
+  }
+
+  updateGameData(loadGame:any){
+    // this.game.gameName = loadGame.gameName;
+    this.game.currentPlayer = loadGame.currentPlayer;
+    this.game.playedCards = loadGame.playedCards;
+    this.game.players = loadGame.players;
+    this.game.stack = loadGame.stack;
+    // this.game.pickCardAnimation = loadGame.pickCardAnimation;
+    // this.game.currentCard = loadGame.currentCard;
   }
 }

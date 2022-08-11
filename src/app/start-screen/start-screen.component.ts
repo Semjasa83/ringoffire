@@ -1,4 +1,3 @@
-import { Game } from './../../models/game';
 import { GameComponent } from './../game/game.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -11,10 +10,11 @@ import {
   doc,
   updateDoc,
 } from '@firebase/firestore';
-import { Firestore, collectionData, docData } from '@angular/fire/firestore';
+import { Firestore, collectionData, docData, setDoc } from '@angular/fire/firestore';
 
 import { Injectable } from '@angular/core';
 import { elementAt, Observable } from 'rxjs';
+import { Game } from 'src/models/game';
 
 @Component({
   selector: 'app-start-screen',
@@ -22,13 +22,12 @@ import { elementAt, Observable } from 'rxjs';
   styleUrls: ['./start-screen.component.scss']
 })
 export class StartScreenComponent implements OnInit {
-game = new Game;
+
 // Collection speichern
 private gameComponent: CollectionReference<DocumentData>;
-  constructor(private router: Router, private readonly firestore: Firestore) {
+  constructor(private router: Router, private firestore: Firestore) {
     // pull Collection
-    this.gameComponent = collection(this.firestore, 'games');
-    //console.log('comp:', this.gameComponent); ____CONSOLE
+    this.gameComponent = collection(firestore, 'game');
   }
 
   ngOnInit(): void {
@@ -36,16 +35,15 @@ private gameComponent: CollectionReference<DocumentData>;
 
   async newGame() {
     // Start Game
-    let game = this.game.toJSON();
-    console.log(game);
+    let game = new Game();
 
-    let elem = await addDoc(this.gameComponent, {game})
-    //console.log('va', elem);  //______CONSOLE
-    //console.log('va ID', elem.id);    //______CONSOLE
+    const gameInfo = await addDoc(collection(this.firestore, "games"), game.toJSON()); //Users
+    console.log('va', gameInfo);
+    console.log('va ID', gameInfo.id);
 
     // document zu collection hinzufügen
     //id = 'ID von Firebase';
-    this.router.navigateByUrl('/game/' + elem.id);
+    this.router.navigateByUrl('/game/' + gameInfo.id);
   }
 
 }
