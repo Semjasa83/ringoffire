@@ -48,26 +48,37 @@ export class GameComponent implements OnInit {
     //console.log('this game: ', this.game); // _________CONSOLE
     if (!this.game.pickCardAnimation && this.game.players.length > 0) {
       this.game.pickCardAnimation = true;
-      this.game.currentPlayer++;
-      this.game.currentPlayer =
-      this.game.currentPlayer % this.game.players.length;
-      this.saveGame();
-      setTimeout(() => {
-        this.game.currentCard = this.game.stack.pop();
-        console.log('this current card 1: ', this.game.currentCard); //________CONSOLE
-        this.saveGame();
-      }, 400);
-      setTimeout(() => {
-        this.game.playedCards.push(this.game.currentCard);
-        console.log('this current card 2: ', this.game.currentCard); //________CONSOLE
-        this.game.pickCardAnimation = false;
-        this.saveGame();
-      }, 1300);
-
+      this.playerChange();
+      this.popCurrentCard();
+      this.playedCards();
       console.log('this current card 3: ', this.game.currentCard); //________CONSOLE
     } else {
       alert('please add at min 1 Player');
     }
+  }
+
+  playerChange() {
+    this.game.currentPlayer++;
+    this.game.currentPlayer =
+      this.game.currentPlayer % this.game.players.length;
+    this.saveGame();
+  }
+
+  popCurrentCard() {
+    setTimeout(() => {
+      this.game.currentCard = this.game.stack.pop();
+      console.log('this current card 1: ', this.game.currentCard); //________CONSOLE
+      this.saveGame();
+    }, 400);
+  }
+
+  playedCards() {
+    setTimeout(() => {
+      this.game.playedCards.push(this.game.currentCard);
+      console.log('this current card 2: ', this.game.currentCard); //________CONSOLE
+      this.game.pickCardAnimation = false;
+      this.saveGame();
+    }, 1300);
   }
 
   openDialog(): void {
@@ -95,6 +106,5 @@ export class GameComponent implements OnInit {
     this.game.stack = loadGame.stack;
     this.game.pickCardAnimation = loadGame.pickCardAnimation;
     this.game.currentCard = loadGame.currentCard;
-
   }
 }
