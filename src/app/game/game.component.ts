@@ -46,7 +46,7 @@ export class GameComponent implements OnInit {
 
   takeCard() {
     //console.log('this game: ', this.game); // _________CONSOLE
-    if (!this.game.pickCardAnimation) {
+    if (!this.game.pickCardAnimation && this.game.players.length > 0) {
       this.game.pickCardAnimation = true;
       this.game.currentPlayer++;
       this.game.currentPlayer =
@@ -62,9 +62,11 @@ export class GameComponent implements OnInit {
         console.log('this current card 2: ', this.game.currentCard); //________CONSOLE
         this.game.pickCardAnimation = false;
         this.saveGame();
-      }, 2000);
+      }, 1300);
 
       console.log('this current card 3: ', this.game.currentCard); //________CONSOLE
+    } else {
+      alert('please add at min 1 Player');
     }
   }
 
