@@ -37,7 +37,7 @@ export class GameComponent implements OnInit {
       console.log('current ID', params.id); //_______CONSOLE
 
       this.gameId = params.id; // hinzugefügt
-      onSnapshot(doc(this.firestore, 'game', params.id), (doc) => {
+      onSnapshot(doc(this.firestore, 'games', params.id), (doc) => {
         const loadGame: any = doc.data();
         this.updateGameData(loadGame);
       });
@@ -63,6 +63,7 @@ export class GameComponent implements OnInit {
     this.game.currentPlayer++;
     this.game.currentPlayer =
       this.game.currentPlayer % this.game.players.length;
+    this.saveGame();
     setTimeout(() => {
       this.game.playedCards.push(this.currentCard);
       this.saveGame();
