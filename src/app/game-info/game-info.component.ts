@@ -52,7 +52,7 @@ export class GameInfoComponent implements OnInit, OnChanges {
         'The player who drew the card chooses a category, with players going clockwise to name things that fall within the category. The first person to fail to come up with something that has not been said must drink.',
     },
     {
-      title: 'Never hab I ever',
+      title: 'Never had I ever',
       describtion:
         'Starting with the player who drew the card, everyone goes around the circle and saying "never have I ever ___." Whoever has done the action must drink.',
     },
