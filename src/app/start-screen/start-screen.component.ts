@@ -36,12 +36,12 @@ private gameComponent: CollectionReference<DocumentData>;
   async newGame() {
     let game = new Game();
 
-    const gameInfo = await addDoc(collection(this.firestore, "games"), game.toJSON()); //Users
+    const gameInfo = await addDoc(collection(this.firestore, "games"), game.toJSON());
     console.log('va', gameInfo);
     console.log('va ID', gameInfo.id);
 
-    // document zu collection hinzufügen
-    //id = 'ID von Firebase';
+    // document add to collection
+    //id = 'ID from Firebase';
     this.router.navigateByUrl('/game/' + gameInfo.id);
   }
 

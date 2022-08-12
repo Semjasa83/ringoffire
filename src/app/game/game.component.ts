@@ -20,7 +20,6 @@ import { ActivatedRoute } from '@angular/router';
 export class GameComponent implements OnInit {
   game: Game;
   games: Observable<Game[]>;
-
   gameId: string = '';
 
   constructor(
@@ -32,7 +31,7 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {
     this.newGame();
     this.route.params.subscribe((params) => {
-      console.log('current ID', params.id); //_______CONSOLE
+      //console.log('current ID', params.id); //_______CONSOLE
       this.gameId = params.id; // hinzugefügt
       onSnapshot(doc(this.firestore, 'games', params.id), (doc) => {
         const loadGame: any = doc.data();
@@ -46,7 +45,7 @@ export class GameComponent implements OnInit {
   }
 
   takeCard() {
-    console.log('this game: ', this.game); // _________CONSOLE
+    //console.log('this game: ', this.game); // _________CONSOLE
     if (!this.game.pickCardAnimation) {
       this.game.pickCardAnimation = true;
       this.game.currentPlayer++;
@@ -55,15 +54,17 @@ export class GameComponent implements OnInit {
       this.saveGame();
       setTimeout(() => {
         this.game.currentCard = this.game.stack.pop();
+        console.log('this current card 1: ', this.game.currentCard); //________CONSOLE
         this.saveGame();
       }, 400);
       setTimeout(() => {
         this.game.playedCards.push(this.game.currentCard);
+        console.log('this current card 2: ', this.game.currentCard); //________CONSOLE
         this.game.pickCardAnimation = false;
         this.saveGame();
       }, 2000);
 
-      console.log('this current card: ', this.game.currentCard); //________CONSOLE
+      console.log('this current card 3: ', this.game.currentCard); //________CONSOLE
     }
   }
 
@@ -81,7 +82,7 @@ export class GameComponent implements OnInit {
   saveGame() {
     const coll: any = collection(this.firestore, 'games');
     setDoc(doc(coll, this.gameId), this.game.toJSON());
-    console.log('gameID: ', this.gameId); //_________CONSOLE
+    //console.log('gameID: ', this.gameId); //_________CONSOLE
   }
 
   updateGameData(loadGame: any) {
