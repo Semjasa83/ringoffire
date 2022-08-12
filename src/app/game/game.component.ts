@@ -18,8 +18,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent implements OnInit {
-  pickCardAnimation = false;
-  currentCard: string = '';
   game: Game;
   games: Observable<Game[]>;
 
@@ -35,7 +33,6 @@ export class GameComponent implements OnInit {
     this.newGame();
     this.route.params.subscribe((params) => {
       console.log('current ID', params.id); //_______CONSOLE
-
       this.gameId = params.id; // hinzugefügt
       onSnapshot(doc(this.firestore, 'games', params.id), (doc) => {
         const loadGame: any = doc.data();
@@ -50,25 +47,24 @@ export class GameComponent implements OnInit {
 
   takeCard() {
     console.log('this game: ', this.game); // _________CONSOLE
-    if (!this.pickCardAnimation) {
-      this.currentCard = this.game.stack.pop();
-      this.saveGame();
-      console.log('this current card: ', this.currentCard); //________CONSOLE
-      this.cardAnimation();
-    }
-  }
-
-  cardAnimation() {
-    this.pickCardAnimation = true;
-    this.game.currentPlayer++;
-    this.game.currentPlayer =
+    if (!this.game.pickCardAnimation) {
+      this.game.pickCardAnimation = true;
+      this.game.currentPlayer++;
+      this.game.currentPlayer =
       this.game.currentPlayer % this.game.players.length;
-    this.saveGame();
-    setTimeout(() => {
-      this.game.playedCards.push(this.currentCard);
       this.saveGame();
-      this.pickCardAnimation = false;
-    }, 1300);
+      setTimeout(() => {
+        this.game.currentCard = this.game.stack.pop();
+        this.saveGame();
+      }, 400);
+      setTimeout(() => {
+        this.game.playedCards.push(this.game.currentCard);
+        this.game.pickCardAnimation = false;
+        this.saveGame();
+      }, 2000);
+
+      console.log('this current card: ', this.game.currentCard); //________CONSOLE
+    }
   }
 
   openDialog(): void {
@@ -94,7 +90,8 @@ export class GameComponent implements OnInit {
     this.game.playedCards = loadGame.playedCards;
     this.game.players = loadGame.players;
     this.game.stack = loadGame.stack;
-    // this.game.pickCardAnimation = loadGame.pickCardAnimation;
-    // this.game.currentCard = loadGame.currentCard;
+    this.game.pickCardAnimation = loadGame.pickCardAnimation;
+    this.game.currentCard = loadGame.currentCard;
+
   }
 }
