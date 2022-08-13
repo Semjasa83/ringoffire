@@ -65,11 +65,9 @@ export class GameComponent implements OnInit {
   }
 
   popCurrentCard() {
-    setTimeout(() => {
       this.game.currentCard = this.game.stack.pop();
       console.log('this current card 1: ', this.game.currentCard); //________CONSOLE
       this.saveGame();
-    }, 400);
   }
 
   playedCards() {
