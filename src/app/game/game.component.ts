@@ -90,6 +90,13 @@ export class GameComponent implements OnInit {
     });
   }
 
+  getBaseURL() {
+    var baseURL = window.location.origin;
+    var host = window.location.host;
+    console.log(baseURL + '/game/' + this.gameId);
+    console.log(host);
+  }
+
   saveGame() {
     const coll: any = collection(this.firestore, 'games');
     setDoc(doc(coll, this.gameId), this.game.toJSON());
