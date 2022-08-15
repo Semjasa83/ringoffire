@@ -1,3 +1,7 @@
+.d-none {
+  display: none;
+}
+
 .playground {
   width: 100vw;
   height: 100vh;
@@ -12,7 +16,8 @@
 
 .card-stack {
   position: relative;
-  right: 50px;
+  right: 90px;
+  rotate: -10deg;
   img {
     position: absolute;
     width: 160px;
@@ -30,14 +35,14 @@
 
 .played-card {
   right: 20px;
-  transform: scale(1.1) translateX(200px) translateY(-200px) rotate(15deg);
+  transform: scale(1.1) translateX(260px) translateY(-230px) rotate(15deg);
 }
 
 .pick-card {
   transition: all 120ms ease-in-out;
   transform: scale(1.5);
   animation: pick-card-animation 1.1s ease-in-out;
-  transform: scale(1.1) translateX(200px) translateY(-200px) rotate(15deg);
+  transform: scale(1.1) translateX(260px) translateY(-230px) rotate(15deg);
 }
 
 @keyframes pick-card-animation {
@@ -51,7 +56,7 @@
     transform: scale(1.5);
   }
   100% {
-    transform: scale(1.1) translateX(200px) translateY(-200px) rotate(15deg);
+    transform: scale(1.1) translateX(260px) translateY(-230px) rotate(15deg);
   }
 }
 
@@ -79,4 +84,17 @@
   left: 8rem;
   right: 14rem;
   box-shadow: 7px 7px 10px rgba($color: #c2175b, $alpha: 0.4);
+}
+
+.adress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: 7px 7px 10px rgba($color: #c2175b, $alpha: 0.4);
+  .adress-title {
+    font-size: 0.75rem;
+  }
+  .adress-txt {
+    font-size: 0.75rem;
+  }
 }

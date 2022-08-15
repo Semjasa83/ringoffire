@@ -21,6 +21,7 @@ export class GameComponent implements OnInit {
   game: Game;
   games: Observable<Game[]>;
   gameId: string = '';
+  baseUrl: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -38,6 +39,7 @@ export class GameComponent implements OnInit {
         this.updateGameData(loadGame);
       });
     });
+    this.baseUrl = window.location.origin;
   }
 
   newGame() {
@@ -95,6 +97,16 @@ export class GameComponent implements OnInit {
     var host = window.location.host;
     console.log(baseURL + '/game/' + this.gameId);
     console.log(host);
+  }
+
+  openGameUrl() {
+    var gameUrlDialog = document.getElementById("GameID");
+    gameUrlDialog.classList.remove("d-none");
+  }
+
+  closeGameUrl() {
+    var gameUrlDialog = document.getElementById("GameID");
+    gameUrlDialog.classList.add("d-none");
   }
 
   saveGame() {
