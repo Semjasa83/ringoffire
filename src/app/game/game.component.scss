@@ -25,7 +25,7 @@
   @media (max-width: 720px) {
     right: 100px;
     top: 80px;
-    rotate: 270deg;
+    transform: rotate(270deg);
   }
 }
 
@@ -40,7 +40,7 @@
   @media (max-width: 720px) {
     right: 10px;
     top: 0px;
-    rotate: 0deg;
+    transform: rotate(0deg);
   }
 }
 
@@ -61,7 +61,7 @@
   animation: pick-card-animation 1.1s ease-in-out;
   transform: scale(1.1) translateX(220px) translateY(-230px) rotate(15deg);
   @media (max-width: 720px) {
-    transform: scale(1.1) translateX(370px) translateY(45px) rotate(110deg);
+    transform: scale(1.1) translateX(371px) translateY(45px) rotate(110deg);
   }
 }
 

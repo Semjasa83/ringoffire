@@ -22,6 +22,7 @@ export class GameComponent implements OnInit {
   games: Observable<Game[]>;
   gameId: string = '';
   baseUrl: string = '';
+  host: string = '';
 
   constructor(
     private route: ActivatedRoute,
