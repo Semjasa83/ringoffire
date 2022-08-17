@@ -1,15 +1,19 @@
 <app-player
+  (click)="editPlayer(i)"
   *ngFor="let player of game.players; let i = index"
-  [ngStyle]="{ 'top.px': 100 + i * 90 }"
+  [ngStyle]="{ 'top.px': 20 + i * 60 }"
   [playerActive]="i == game.currentPlayer"
+  [image]="game.avatars"
   [name]="player"
   class="avatar-position hide-mobile"
 ></app-player>
 
 <app-player-mobile
+  (click)="editPlayer(i)"
   *ngFor="let player of game.players; let i = index"
-  [ngStyle]="{ 'left.px': 0, 'top.px': 0 + i * 45}"
+  [ngStyle]="{ 'left.px': 0, 'top.px': 0 + i * 45 }"
   [playerActive]="i == game.currentPlayer"
+  [image]="game.avatars"
   [name]="player"
   class="avatar-position hide-desktop"
 ></app-player-mobile>
@@ -54,9 +58,13 @@
 </button>
 
 <mat-card mat-fab color="primary" class="adress d-none" id="GameID">
-  <mat-card-title class="adress-title">Game ID to play together:</mat-card-title>
-  <mat-card-subtitle class="adress-txt">{{ baseUrl + '/game/' + gameId}}  <button mat-button (click)="closeGameUrl()" class="closeUrlDialog">close</button></mat-card-subtitle>
-
+  <mat-card-title class="adress-title"
+    >Game ID to play together:</mat-card-title
+  >
+  <mat-card-subtitle class="adress-txt"
+    >{{ baseUrl + "/game/" + gameId }}
+    <button mat-button (click)="closeGameUrl()" class="closeUrlDialog">
+      close
+    </button></mat-card-subtitle
+  >
 </mat-card>
-
-

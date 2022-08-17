@@ -11,6 +11,8 @@ import {
 import { Observable } from 'rxjs';
 import { doc, setDoc } from 'firebase/firestore';
 import { ActivatedRoute } from '@angular/router';
+import { EditPlayerComponent } from '../edit-player/edit-player.component';
+
 
 @Component({
   selector: 'app-game',
@@ -82,12 +84,22 @@ export class GameComponent implements OnInit {
     }, 1300);
   }
 
+  editPlayer(playerId: number) {
+    console.log('Edit Player', playerId);//_____CONSOLE
+    const dialogRef = this.dialog.open(EditPlayerComponent);
+
+    dialogRef.afterClosed().subscribe((change: string) => {
+      console.log('recieved change', change)//_____CONSOLE
+    });
+  }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent);
 
     dialogRef.afterClosed().subscribe((name: string) => {
       if (name && name.length > 0) {
         this.game.players.push(name);
+        this.game.avatars.push('1.png');
         this.saveGame();
       }
     });
@@ -96,8 +108,8 @@ export class GameComponent implements OnInit {
   getBaseURL() {
     var baseURL = window.location.origin;
     var host = window.location.host;
-    console.log(baseURL + '/game/' + this.gameId);
-    console.log(host);
+    console.log(baseURL + '/game/' + this.gameId); //_____CONSOLE
+    console.log(host);//_____CONSOLE
   }
 
   openGameUrl() {
@@ -117,10 +129,10 @@ export class GameComponent implements OnInit {
   }
 
   updateGameData(loadGame: any) {
-    // this.game.gameName = loadGame.gameName;
     this.game.currentPlayer = loadGame.currentPlayer;
     this.game.playedCards = loadGame.playedCards;
     this.game.players = loadGame.players;
+    this.game.avatars = loadGame.avatars;
     this.game.stack = loadGame.stack;
     this.game.pickCardAnimation = loadGame.pickCardAnimation;
     this.game.currentCard = loadGame.currentCard;

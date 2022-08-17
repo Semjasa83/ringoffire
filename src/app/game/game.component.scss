@@ -158,3 +158,11 @@
     }
   }
 }
+
+app-player,
+app-player-mobile {
+  cursor: pointer;
+  &:hover {
+    filter: brightness(1.2);
+  }
+}

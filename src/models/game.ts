@@ -1,5 +1,6 @@
 export class Game {
     public players: string[] = []; //permit only string in the Array //public for all File access
+    public avatars: string[];
     public stack: string[] = [];
     public playedCards: string[] = [];
     public currentPlayer: number = 0;
@@ -21,6 +22,7 @@ export class Game {
     public toJSON(){
       return {
         players: this.players,
+        //avatars: this.avatars,
         stack: this.stack,
         playedCards: this.playedCards,
         currentPlayer: this.currentPlayer,
