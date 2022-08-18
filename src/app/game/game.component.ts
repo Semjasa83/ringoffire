@@ -24,6 +24,7 @@ export class GameComponent implements OnInit {
   gameId: string = '';
   baseUrl: string = '';
   host: string = '';
+  gameOver = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -48,9 +49,16 @@ export class GameComponent implements OnInit {
     this.game = new Game();
   }
 
+  restartGame() {
+    this.gameOver = false;
+    this.newGame();
+  }
+
   takeCard() {
     console.log('this game: ', this.game); // _________CONSOLE
-    if (!this.game.pickCardAnimation && this.game.players.length > 0) {
+    if (this.game.stack.length == 0) {
+      this.gameOver = true;
+    } else if (!this.game.pickCardAnimation && this.game.players.length > 0) {
       this.game.pickCardAnimation = true;
       this.playerChange();
       this.popCurrentCard();
