@@ -13,7 +13,6 @@ import { doc, setDoc } from 'firebase/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { EditPlayerComponent } from '../edit-player/edit-player.component';
 
-
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -50,13 +49,13 @@ export class GameComponent implements OnInit {
   }
 
   takeCard() {
-    //console.log('this game: ', this.game); // _________CONSOLE
+    console.log('this game: ', this.game); // _________CONSOLE
     if (!this.game.pickCardAnimation && this.game.players.length > 0) {
       this.game.pickCardAnimation = true;
       this.playerChange();
       this.popCurrentCard();
       this.playedCards();
-      console.log('this current card 3: ', this.game.currentCard); //________CONSOLE
+      //console.log('this current card 3: ', this.game.currentCard); //________CONSOLE
     } else {
       alert('please add at min 1 Player');
     }
@@ -70,26 +69,33 @@ export class GameComponent implements OnInit {
   }
 
   popCurrentCard() {
-      this.game.currentCard = this.game.stack.pop();
-      console.log('this current card 1: ', this.game.currentCard); //________CONSOLE
-      this.saveGame();
+    this.game.currentCard = this.game.stack.pop();
+    //console.log('this current card 1: ', this.game.currentCard); //________CONSOLE
+    this.saveGame();
   }
 
   playedCards() {
     setTimeout(() => {
       this.game.playedCards.push(this.game.currentCard);
-      console.log('this current card 2: ', this.game.currentCard); //________CONSOLE
+      //console.log('this current card 2: ', this.game.currentCard); //________CONSOLE
       this.game.pickCardAnimation = false;
       this.saveGame();
     }, 1300);
   }
 
   editPlayer(playerId: number) {
-    console.log('Edit Player', playerId);//_____CONSOLE
     const dialogRef = this.dialog.open(EditPlayerComponent);
 
     dialogRef.afterClosed().subscribe((change: string) => {
-      console.log('recieved change', change)//_____CONSOLE
+      if (change) {
+        if (change == 'DELETE') {
+          this.game.avatars.splice(playerId, 1)
+          this.game.players.splice(playerId, 1)
+        } else {
+          this.game.avatars[playerId] = change;
+        }
+        this.saveGame();
+      }
     });
   }
 
@@ -108,18 +114,18 @@ export class GameComponent implements OnInit {
   getBaseURL() {
     var baseURL = window.location.origin;
     var host = window.location.host;
-    console.log(baseURL + '/game/' + this.gameId); //_____CONSOLE
-    console.log(host);//_____CONSOLE
+    //console.log(baseURL + '/game/' + this.gameId); //_____CONSOLE
+    //console.log(host);//_____CONSOLE
   }
 
   openGameUrl() {
-    var gameUrlDialog = document.getElementById("GameID");
-    gameUrlDialog.classList.remove("d-none");
+    var gameUrlDialog = document.getElementById('GameID');
+    gameUrlDialog.classList.remove('d-none');
   }
 
   closeGameUrl() {
-    var gameUrlDialog = document.getElementById("GameID");
-    gameUrlDialog.classList.add("d-none");
+    var gameUrlDialog = document.getElementById('GameID');
+    gameUrlDialog.classList.add('d-none');
   }
 
   saveGame() {
