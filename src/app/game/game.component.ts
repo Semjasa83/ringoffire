@@ -64,8 +64,6 @@ export class GameComponent implements OnInit {
       this.popCurrentCard();
       this.playedCards();
       //console.log('this current card 3: ', this.game.currentCard); //________CONSOLE
-    } else {
-      alert('please add at min 1 Player');
     }
   }
 
