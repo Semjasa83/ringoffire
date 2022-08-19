@@ -29,6 +29,7 @@
       [ngStyle]="{ 'right.px': i * 2 }"
       *ngFor="let cards of [0, 1, 2, 3]; let i = index"
       src="/assets/img/cards/custom_back.png"
+      class="card-bundle"
     />
     <img
       (click)="takeCard()"

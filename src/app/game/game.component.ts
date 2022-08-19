@@ -65,6 +65,9 @@ export class GameComponent implements OnInit {
       this.playedCards();
       //console.log('this current card 3: ', this.game.currentCard); //________CONSOLE
     }
+    if (this.game.players.length == 0){
+      this.openDialog();
+    }
   }
 
   playerChange() {

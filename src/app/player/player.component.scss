@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: rgba($color: #777777, $alpha: 0.8); //d35400
+    background-color: rgba($color: #777777, $alpha: 0.6); //d35400
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
     span {
@@ -22,5 +22,5 @@
 }
 
 .player-active {
-    background-color: rgba($color: #C2175B, $alpha: 0.8);
+    background-color: rgba($color: #C2175B, $alpha: 0.6);
 }

@@ -38,8 +38,13 @@
   }
   @media (max-width: 720px) {
     right: 100px;
-    top: 80px;
+    top: 10px;
     transform: rotate(270deg);
+  }
+  .card-bundle {
+    @media (max-width: 720px) {
+      transform: scale(0.8);
+    }
   }
 }
 
@@ -50,11 +55,15 @@
   &:hover {
     transform: scale(1.1);
     transform: translateX(10px);
+    @media (max-width: 720px) {
+      transform: scale(0.8);
+    }
   }
   @media (max-width: 720px) {
     right: 10px;
     top: 0px;
     transform: rotate(0deg);
+    transform: scale(0.8);
   }
 }
 
@@ -62,9 +71,9 @@
   right: 60px;
   transform: scale(1.1) translateX(220px) translateY(-230px) rotate(15deg);
   @media (max-width: 720px) {
-    right: -350px;
+    right: -180px;
     top: 50px;
-    transform: scale(1.1) translateX(0px) translateY(0px) rotate(110deg);
+    transform: scale(0.8) translateX(0px) translateY(0px) rotate(110deg);
   }
 }
 
@@ -75,7 +84,7 @@
   animation: pick-card-animation 1.1s ease-in-out;
   transform: scale(1.1) translateX(220px) translateY(-230px) rotate(15deg);
   @media (max-width: 720px) {
-    transform: scale(1.1) translateX(371px) translateY(45px) rotate(110deg);
+    transform: scale(0.8) translateX(300px) translateY(65px) rotate(110deg);
   }
 }
 
@@ -98,16 +107,16 @@
 @media (max-width: 720px) {
   @keyframes pick-card-animation {
     0% {
-      transform: scale(1);
+      transform: scale(0.8);
     }
     40% {
-      transform: scale(1.5);
+      transform: scale(0.9);
     }
     60% {
-      transform: scale(1.5);
+      transform: scale(0.9);
     }
     100% {
-      transform: scale(1.1) translateX(370px) translateY(45px) rotate(110deg);
+      transform: scale(0.8) translateX(300px) translateY(65px) rotate(110deg);
     }
   }
 }
@@ -122,8 +131,10 @@
   position: absolute;
   right: 2rem;
   bottom: 2.5rem;
+  background-color: rgba($color: #c2175b, $alpha: 0.7);
   @media (max-width: 720px) {
-    bottom: 120px;
+    top: 1rem;
+    right: 5rem;
   }
 }
 
@@ -131,8 +142,10 @@
   position: absolute;
   right: 6rem;
   bottom: 2.5rem;
+  background-color: rgba($color: #c2175b, $alpha: 0.7);
   @media (max-width: 720px) {
-    bottom: 120px;
+    top: 1rem;
+    right: 1rem;
   }
 }
 
@@ -143,6 +156,11 @@
   position: absolute;
   bottom: 2.5rem;
   right: 2rem;
+  background-color: rgba($color: #c2175b, $alpha: 0.7);
+  @media (max-width: 720px) {
+    top: 1rem;
+    right: 5rem;
+  }
 }
 
 .pin-bottom {
